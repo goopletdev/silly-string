@@ -1,1 +1,4 @@
 test/Unity
+*.o
+#binary:
+silly-string-test
