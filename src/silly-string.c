@@ -8,6 +8,17 @@ struct silly__nodeT {
     struct silly__nodeT** subtrees;
 };
 
+void silly_string_free(silly_string* root) {
+    if (!root) {
+        return;
+    }
+    for (int i = 0; i < SUBTREES_LEN; i++) {
+        silly_string_free(root->subtrees[i]);
+    }
+    free(root->subtrees);
+    free(root);
+}
+
 silly_node* silly_string_init(void) {
     silly_node* node = (silly_node*)malloc(sizeof(silly_node));
     node->value = NULL;

@@ -10,6 +10,11 @@
 typedef struct silly__nodeT silly_string;
 
 /**
+ * Recursively frees silly_string node
+ */
+void silly_string_free(silly_string* root);
+
+/**
  * Initialize the root node of a silly_string
  */
 silly_string* silly_string_init();

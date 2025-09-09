@@ -18,7 +18,7 @@ void setUp(void) {
 }
 
 void tearDown(void) {
-
+    silly_string_free(root);
 }
 
 void sillyStringGet_should_getCaseSensitiveKeyValues(void) {
