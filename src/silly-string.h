@@ -28,7 +28,7 @@ void silly_insert(silly_string* root, char* key, void* value);
  * Insert a [key, val] pair for case-insensitive lookup.
  * Sets all lowercase letters to uppercase
  */
-void silly_insert_caps(silly_string* root, char* key, void* value);
+void silly_insert_ci(silly_string* root, char* key, void* value);
 
 /**
  * Look up value at a given key, or return NULL if key doesn't exist
@@ -39,11 +39,11 @@ void* silly_get(silly_string* root, char* key);
  * Look up value at a given key set to uppercase;
  * for use with case-insensitive insertions
  */
-void* silly_get_caps(silly_string* root, char* key);
+void* silly_get_ci(silly_string* root, char* key);
 
 /**
  * Look up value at a case-insensitive key, or NULL if it doesn't exist
  */
-void* silly_get_case_insensitive(silly_string* root, char* key);
+void* silly_get_ci_from_case_sensitive(silly_string* root, char* key);
 
 #endif // SILLY_STRING_H

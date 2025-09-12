@@ -13,8 +13,8 @@ void setUp(void) {
     silly_insert(root, "HOUSE", "house");
     silly_insert(root, "it's ____ to see you AGAIN!", "nice");
 
-    silly_insert_caps(root, "capstest_1", "ct1 result 1");
-    silly_insert_caps(root, "capstest_2", "ct2 result 2");
+    silly_insert_ci(root, "capstest_1", "ct1 result 1");
+    silly_insert_ci(root, "capstest_2", "ct2 result 2");
 }
 
 void tearDown(void) {
@@ -35,22 +35,22 @@ void sillyStringGet_should_getCaseSensitiveKeyValues(void) {
 }
 
 void sillyStringGetCaseInsensitive_should_getCaseInsensitiveKeyValues(void) {
-    TEST_ASSERT_EQUAL_STRING("fruit", silly_get_case_insensitive(root, "apple"));
-    TEST_ASSERT_EQUAL_STRING("fruit", silly_get_case_insensitive(root, "Apple"));
-    TEST_ASSERT_EQUAL_STRING("fruit", silly_get_case_insensitive(root, "APPLE"));
-    TEST_ASSERT_EQUAL_STRING("it's ________ you're a parent when...", silly_get_case_insensitive(root, "ApPaReNT"));
-    TEST_ASSERT_EQUAL_STRING("nice", silly_get_case_insensitive(root, "it's ____ to see you again!"));
+    TEST_ASSERT_EQUAL_STRING("fruit", silly_get_ci_from_case_sensitive(root, "apple"));
+    TEST_ASSERT_EQUAL_STRING("fruit", silly_get_ci_from_case_sensitive(root, "Apple"));
+    TEST_ASSERT_EQUAL_STRING("fruit", silly_get_ci_from_case_sensitive(root, "APPLE"));
+    TEST_ASSERT_EQUAL_STRING("it's ________ you're a parent when...", silly_get_ci_from_case_sensitive(root, "ApPaReNT"));
+    TEST_ASSERT_EQUAL_STRING("nice", silly_get_ci_from_case_sensitive(root, "it's ____ to see you again!"));
 
-    TEST_ASSERT_EQUAL_STRING("ct1 result 1", silly_get_case_insensitive(root, "capstest_1"));
+    TEST_ASSERT_EQUAL_STRING("ct1 result 1", silly_get_ci_from_case_sensitive(root, "capstest_1"));
 }
 
 void sillyStringGetCaps_should_getCaseInsensitiveKeyValuesFromCapsInsertion(void) {
-    TEST_ASSERT_EQUAL_STRING("ct1 result 1", silly_get_caps(root, "capstest_1"));
-    TEST_ASSERT_EQUAL_STRING("ct2 result 2", silly_get_caps(root, "capstest_2"));
-    TEST_ASSERT_EQUAL_STRING("ct1 result 1", silly_get_caps(root, "CAPSTEST_1"));
-    TEST_ASSERT_EQUAL_STRING("ct2 result 2", silly_get_caps(root, "CAPsTeSt_2"));
+    TEST_ASSERT_EQUAL_STRING("ct1 result 1", silly_get_ci(root, "capstest_1"));
+    TEST_ASSERT_EQUAL_STRING("ct2 result 2", silly_get_ci(root, "capstest_2"));
+    TEST_ASSERT_EQUAL_STRING("ct1 result 1", silly_get_ci(root, "CAPSTEST_1"));
+    TEST_ASSERT_EQUAL_STRING("ct2 result 2", silly_get_ci(root, "CAPsTeSt_2"));
 
-    TEST_ASSERT_NULL(silly_get_caps(root, "apple"));
+    TEST_ASSERT_NULL(silly_get_ci(root, "apple"));
 }
     
 

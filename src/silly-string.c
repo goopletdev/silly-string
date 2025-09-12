@@ -38,7 +38,7 @@ void* silly_get(silly_string* root, char* key) {
     return current->value;
 }
 
-void* silly_get_caps(silly_string* root, char* key) {
+void* silly_get_ci(silly_string* root, char* key) {
     silly_string* current = root;
     char c;
     while ((c = *(key++))) {
@@ -65,7 +65,7 @@ void silly_insert(silly_string* root, char* key, void* value) {
     current->value = value;
 }
 
-void silly_insert_caps(silly_string* root, char* key, void* value) {
+void silly_insert_ci(silly_string* root, char* key, void* value) {
     silly_string* current = root;
     char c;
     while ((c = *(key++))) {
@@ -80,7 +80,7 @@ void silly_insert_caps(silly_string* root, char* key, void* value) {
     current->value = value;
 }
 
-void* silly_get_case_insensitive(silly_string* root, char* key) {
+void* silly_get_ci_from_case_sensitive(silly_string* root, char* key) {
     char c = *(key++);
     if (!c) {
         return root->value;
@@ -92,20 +92,20 @@ void* silly_get_case_insensitive(silly_string* root, char* key) {
             if (!current) {
                 return NULL;
             } else {
-                return silly_get_case_insensitive(current, key);
+                return silly_get_ci_from_case_sensitive(current, key);
             }
         } else if (c >= 'a' && c <= 'z') {
             current = root->subtrees[c - 32];
             if (!current) {
                 return NULL;
             } else {
-                return silly_get_case_insensitive(current, key);
+                return silly_get_ci_from_case_sensitive(current, key);
             }
         } else {
             return NULL;
         }
     }
-    void* value = silly_get_case_insensitive(current, key); 
+    void* value = silly_get_ci_from_case_sensitive(current, key); 
     if (value) {
         return value;
     } else if (c >= 'A' && c <= 'Z') {
@@ -113,14 +113,14 @@ void* silly_get_case_insensitive(silly_string* root, char* key) {
         if (!current) {
             return NULL;
         } else {
-            return silly_get_case_insensitive(current, key);
+            return silly_get_ci_from_case_sensitive(current, key);
         }
     } else if (c >= 'a' && c <= 'z') {
         current = root->subtrees[c - 32];
         if (!current) {
             return NULL;
         } else {
-            return silly_get_case_insensitive(current, key);
+            return silly_get_ci_from_case_sensitive(current, key);
         }
     } else {
         return NULL;
