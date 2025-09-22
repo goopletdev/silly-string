@@ -26,7 +26,7 @@ silly_node* silly_init(void) {
     return node;
 }
 
-void* silly_get(silly_string* root, char* key) {
+void* silly_get(silly_string* root, const char* key) {
     silly_string* current = root;
     char c;
     while ((c = *(key++))) {
@@ -38,7 +38,7 @@ void* silly_get(silly_string* root, char* key) {
     return current->value;
 }
 
-void* silly_get_ci(silly_string* root, char* key) {
+void* silly_get_ci(silly_string* root, const char* key) {
     silly_string* current = root;
     char c;
     while ((c = *(key++))) {
@@ -53,7 +53,7 @@ void* silly_get_ci(silly_string* root, char* key) {
     return current->value;
 }
 
-void silly_insert(silly_string* root, char* key, void* value) {
+void silly_insert(silly_string* root, const char* key, void* value) {
     silly_string* current = root;
     char c;
     while ((c = *(key++))) {
@@ -65,7 +65,7 @@ void silly_insert(silly_string* root, char* key, void* value) {
     current->value = value;
 }
 
-void silly_insert_ci(silly_string* root, char* key, void* value) {
+void silly_insert_ci(silly_string* root, const char* key, void* value) {
     silly_string* current = root;
     char c;
     while ((c = *(key++))) {
@@ -80,7 +80,7 @@ void silly_insert_ci(silly_string* root, char* key, void* value) {
     current->value = value;
 }
 
-void* silly_get_ci_from_case_sensitive(silly_string* root, char* key) {
+void* silly_get_ci_from_case_sensitive(silly_string* root, const char* key) {
     char c = *(key++);
     if (!c) {
         return root->value;
