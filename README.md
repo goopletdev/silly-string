@@ -1,5 +1,5 @@
 # silly-string.h
-Simple single-header trie data structure that allows for case-sensitive and case-insensitive lookup of both case-sensitive and case-insensitive key-value insertions. 
+Simple trie data structure that allows for case-sensitive and case-insensitive lookups and insertions. 
 ## Usage
 Simply initialize a root `silly_string` node with `silly_init()`.
 
